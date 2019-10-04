@@ -1,4 +1,8 @@
 var xhr = new XMLHttpRequest();
+function formatData(){
+    var data = new Date();
+    
+}
 
 xhr.onload = function () {
     if (this.status >= 200 && this.status < 400) {
@@ -9,6 +13,6 @@ xhr.onload = function () {
     }
 }
 
-xhr.open("GET", "https://www.dati.lombardia.it/resource/647i-nhxk.json?idsensore=9938", true);
+xhr.open("GET", "https://www.dati.lombardia.it/resource/647i-nhxk.json?idsensore=12025&$order=data", true);
 
 xhr.send();
