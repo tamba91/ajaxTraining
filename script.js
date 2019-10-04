@@ -13,6 +13,6 @@ xhr.onload = function () {
     }
 }
 
-xhr.open("GET", "https://www.dati.lombardia.it/resource/647i-nhxk.json?idsensore=12025&$order=data", true);
+xhr.open("GET", "https://www.dati.lombardia.it/resource/647i-nhxk.json?idsensore=12025&$where=data>'2019-10-03T23:00:00.000'&$order=data DESC", true);
 
 xhr.send();
