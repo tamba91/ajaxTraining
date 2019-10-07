@@ -18,15 +18,15 @@ function complementa(valoreData) {
 
 var data = formatDataOdierna();
 
+
 var xhr = new XMLHttpRequest();
 xhr.onload = function () {
     if (this.status >= 200 && this.status < 400) {
         var res = JSON.parse(this.responseText);
         for (var i = 0; i < res.length; i++) {
-            var p = document.createElement("p");
-            var txt = document.createTextNode("temperatura: " + + res[i].valore + " " + "data e ora: " + res[i].data);
-            p.appendChild(txt);
-            document.body.appendChild(p);
+            var compiled = _.template("<p>temperatura: <%= valore %> data e ora: <%= data %></p>");
+            var riga = compiled(res[i]);
+            document.body.innerHTML += riga;
             //document.getElementById("target").innerHTML += "temperatura: " + res[i].valore + " " + "data e ora: " + res[i].data + "<br>";
         }
     }
