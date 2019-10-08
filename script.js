@@ -16,15 +16,14 @@ function complementa(valoreData) {
     }
 }
 
+var compiled = _.template("<h3>temperatura: <%= valore %> data e ora: <%= data %></h3>");
 var data = formatDataOdierna();
-
 
 var xhr = new XMLHttpRequest();
 xhr.onload = function () {
     if (this.status >= 200 && this.status < 400) {
         var res = JSON.parse(this.responseText);
         for (var i = 0; i < res.length; i++) {
-            var compiled = _.template("<p>temperatura: <%= valore %> data e ora: <%= data %></p>");
             var riga = compiled(res[i]);
             document.body.innerHTML += riga;
             //document.getElementById("target").innerHTML += "temperatura: " + res[i].valore + " " + "data e ora: " + res[i].data + "<br>";
@@ -36,5 +35,5 @@ xhr.open("GET", "https://www.dati.lombardia.it/resource/647i-nhxk.json?idsensore
 
 xhr.send();
 
-console.log(typeof(complementa(7)));
-console.log(typeof(complementa(21)));
+console.log(typeof (complementa(7)));
+console.log(typeof (complementa(21)));
