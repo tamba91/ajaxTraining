@@ -16,7 +16,7 @@ function complementa(valoreData) {
     }
 }
 
-var compiled = _.template("<h3>temperatura: <%= valore %> data e ora: <%= data %></h3>");
+var compiled = _.template("<div class='row'><div class='one-half column'><h4>temperatura: <%= valore %></h4></div> <div class='one-half column'><h4>data e ora: <%= data %></h4></div></div>");
 var data = formatDataOdierna();
 
 var xhr = new XMLHttpRequest();
