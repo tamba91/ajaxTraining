@@ -9,12 +9,49 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+
     <title>Document</title>
 </head>
 
 <body>
-    <div class="container" id="container"></div>
-    
+    <div class="container">
+    <div class="twelve columns"><h3>Misurazione valori di temperatura Provincia di Cremona</h3></div>
+    </div>
+    <div class="container" id="id-selettore">
+        <div class="tewlve columns">
+            <select name="selezione" id="selezione">
+                <option value="">Seleziona una stazione</option>
+                <option value="12025">Spinadesco</option>
+                <option value="9938">Cremona Via Fatebenefratelli</option>
+                <option value="9031">Casalbuttano ed Uniti</option>
+                <option value="19415">Casalmaggiore campo sportivo</option>
+            </select>
+        </div>
+    </div>
+    <div class="container">
+        <div class="six columns">
+            <label for="oggi">Oggi</label>
+            <input type="radio" name="giorno" value="0" id="oggi" checked>
+        </div>
+        <div class="six columns">
+            <label for="ieri">Ieri</label>
+            <input type="radio" name="giorno" value="-1" id="ieri">
+        </div>
+    </div>
+
+
+    <div class="container">
+        <table class="twelve columns" id="data-table">
+            <thead>
+                <th>Temperatura</th>
+                <th>Data e Ora</th>
+            </thead>
+            <tbody id="data-table-body"></tbody>
+        </table>
+
+    </div>
+
+
     <script src="script.js"></script>
 </body>
 
