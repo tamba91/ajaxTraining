@@ -27,7 +27,7 @@ var radios = document.getElementsByName("giorno");
 for (var i = 0; i < radios.length; i++) {
     radios[i].addEventListener("change", function () {
         if (this.value == "0") {
-            data = Date(Date.now());
+            data = new Date();
             console.log(typeof(data));
         }
         else if (this.value == "-1") {
