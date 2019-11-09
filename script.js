@@ -54,7 +54,9 @@ console.log("yesterday-dateStart: ", dateStart);
 console.log("tomorrow-DateEnd: ", dateEnd);
 var dataFormatted = formatData(data);
 
-selezione.addEventListener("change", loadData);
+selezione.addEventListener("change", function(){
+    loadData();
+});
 
 
 for (var i = 0; i < radios.length; i++) {
@@ -74,7 +76,6 @@ for (var i = 0; i < radios.length; i++) {
 
     })
 }
-
 
 
 
