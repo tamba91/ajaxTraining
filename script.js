@@ -26,9 +26,8 @@ function ajaxCall(url, callback) {
 }
 
 function loadData(dateStart, dateEnd) {
-    console.log(dateStart);
-    console.log(dateEnd);
     document.getElementById("data-table-body").innerHTML = "";
+    temperature.length = 0;
     if (selezione.value != "") {
         ajaxCall("https://www.dati.lombardia.it/resource/647i-nhxk.json?idsensore=" + selezione.value  + "&$where=data between" +formatData(dateStart)+ "and" + formatData(dateEnd) + "&$order=data ASC", function (res) {
             var table = document.getElementById("data-table-body");
@@ -39,7 +38,7 @@ function loadData(dateStart, dateEnd) {
                 var row = table.insertRow(0);
                 row.innerHTML = fTemplate;
             }
-            console.log(JSON.stringify(temperature));
+            w.postMessage(temperature);
         })
     }
 }
@@ -47,6 +46,7 @@ function loadData(dateStart, dateEnd) {
 var rowView = "<td>temperatura: <%= valore %>°</td><td>data e ora: <%= data %></td>";
 var compiled = _.template(rowView);
 var xhr = new XMLHttpRequest();
+var w = new Worker('worker.js');
 var selezione = document.getElementById("selezione");
 var radios = document.getElementsByName("giorno");
 var data = new Date();
@@ -69,14 +69,12 @@ for (var i = 0; i < radios.length; i++) {
             dateEnd = new Date();
             dateEnd.setDate(dateEnd.getDate() + 1);
             loadData(dateStart, dateEnd);
-            console.log(dataFormatted);
         }
         else if (this.value == "-1") {
             dateStart = new Date();
             dateStart.setDate(dateStart.getDate()- 1);
             dateEnd = new Date();
             loadData(dateStart, dateEnd);
-            console.log(dataFormatted);
         }
 
     })
