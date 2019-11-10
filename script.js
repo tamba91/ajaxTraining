@@ -34,10 +34,12 @@ function loadData(dateStart, dateEnd) {
             var table = document.getElementById("data-table-body");
             var response = JSON.parse(res);
             for (var i = 0; i < response.length; i++) {
+                temperature.push(response[i].valore);
                 var fTemplate = compiled(response[i]);
                 var row = table.insertRow(0);
                 row.innerHTML = fTemplate;
             }
+            console.log(JSON.stringify(temperature));
         })
     }
 }
@@ -48,13 +50,11 @@ var xhr = new XMLHttpRequest();
 var selezione = document.getElementById("selezione");
 var radios = document.getElementsByName("giorno");
 var data = new Date();
-console.log(formatData(data));
+var temperature = [];
 var dateStart = new Date();
 var dateEnd = new Date();
 
 dateEnd.setDate(dateEnd.getDate() + 1);
-console.log("yesterday-dateStart: ", formatData(dateStart));
-console.log("tomorrow-DateEnd: ", formatData(dateEnd));
 var dataFormatted = formatData(data);
 
 selezione.addEventListener("change", function(){
