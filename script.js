@@ -80,6 +80,10 @@ for (var i = 0; i < radios.length; i++) {
     })
 }
 
+w.onmessage = function(e){
+    console.log(e.data.media);
+}
+
 
 
 

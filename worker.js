@@ -17,4 +17,10 @@ onmessage = function (e) {
     console.log(sum / args.length);
     console.log(min);
     console.log(max);
+    var values = {
+        media: sum/args.length,
+        maxTemp: max,
+        minTemp: min    
+    };
+    postMessage(values);
 }
