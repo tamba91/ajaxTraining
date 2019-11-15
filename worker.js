@@ -4,23 +4,23 @@ onmessage = function (e) {
     var min = +Infinity;
     var max = -Infinity;
     for (var i = 0; i < args.length; i++) {
-        if(args[i]<min){
-            min = args[i];
+        var n = parseFloat(args[i]);
+        if (n < min) {
+            min = n;
         }
 
-        if(args[i]>max){
-            max = args[i];
+        if (n > max) {
+            max = n;
         }
 
-        sum += parseFloat(args[i]);
+        sum += n;
     }
-    console.log(sum / args.length);
-    console.log(min);
-    console.log(max);
+
     var values = {
-        media: sum/args.length,
+        media: Number((sum / args.length).toFixed(1)),
+        minTemp: min,
         maxTemp: max,
-        minTemp: min    
+        exTerm: Number((max - min).toFixed(1))
     };
     postMessage(values);
 }

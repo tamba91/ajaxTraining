@@ -29,7 +29,7 @@ function loadData(dateStart, dateEnd) {
     document.getElementById("data-table-body").innerHTML = "";
     temperature.length = 0;
     if (selezione.value != "") {
-        ajaxCall("https://www.dati.lombardia.it/resource/647i-nhxk.json?idsensore=" + selezione.value  + "&$where=data between" +formatData(dateStart)+ "and" + formatData(dateEnd) + "&$order=data ASC", function (res) {
+        ajaxCall("https://www.dati.lombardia.it/resource/647i-nhxk.json?idsensore=" + selezione.value + "&$where=data between" + formatData(dateStart) + "and" + formatData(dateEnd) + "&$order=data ASC", function (res) {
             var table = document.getElementById("data-table-body");
             var response = JSON.parse(res);
             for (var i = 0; i < response.length; i++) {
@@ -57,10 +57,9 @@ var dateEnd = new Date();
 dateEnd.setDate(dateEnd.getDate() + 1);
 var dataFormatted = formatData(data);
 
-selezione.addEventListener("change", function(){
+selezione.addEventListener("change", function () {
     loadData(dateStart, dateEnd);
 });
-
 
 for (var i = 0; i < radios.length; i++) {
     radios[i].addEventListener("change", function () {
@@ -72,7 +71,7 @@ for (var i = 0; i < radios.length; i++) {
         }
         else if (this.value == "-1") {
             dateStart = new Date();
-            dateStart.setDate(dateStart.getDate()- 1);
+            dateStart.setDate(dateStart.getDate() - 1);
             dateEnd = new Date();
             loadData(dateStart, dateEnd);
         }
@@ -80,8 +79,11 @@ for (var i = 0; i < radios.length; i++) {
     })
 }
 
-w.onmessage = function(e){
-    console.log(e.data.media);
+w.onmessage = function (e) {
+    document.getElementById("media").innerHTML = "Temperatura media: " + e.data.media;
+    document.getElementById("minima").innerHTML = "Temperatura minima: " + e.data.minTemp;
+    document.getElementById("massima").innerHTML = "Temperatura massima: " + e.data.maxTemp;
+    document.getElementById("ex-term").innerHTML = "Escursione termica: " + e.data.exTerm;
 }
 
 
