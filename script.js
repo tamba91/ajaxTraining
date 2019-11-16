@@ -27,6 +27,10 @@ function ajaxCall(url, callback) {
 
 function loadData(dateStart, dateEnd) {
     document.getElementById("data-table-body").innerHTML = "";
+    document.getElementById("media").innerHTML = "";
+    document.getElementById("minima").innerHTML = "";
+    document.getElementById("massima").innerHTML = "";
+    document.getElementById("ex-term").innerHTML = "";
     temperature.length = 0;
     if (selezione.value != "") {
         ajaxCall("https://www.dati.lombardia.it/resource/647i-nhxk.json?idsensore=" + selezione.value + "&$where=data between" + formatData(dateStart) + "and" + formatData(dateEnd) + "&$order=data ASC", function (res) {
@@ -60,6 +64,14 @@ var dataFormatted = formatData(data);
 selezione.addEventListener("change", function () {
     loadData(dateStart, dateEnd);
 });
+
+document.getElementById("show-list").addEventListener("click", function () {
+    if (document.getElementById("table-container").style.display == "none") {
+        document.getElementById("table-container").style.display = "block";
+    } else {
+        document.getElementById("table-container").style.display = "none";
+    }
+})
 
 for (var i = 0; i < radios.length; i++) {
     radios[i].addEventListener("change", function () {
