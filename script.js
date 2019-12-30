@@ -26,11 +26,11 @@ function ajaxCall(url, callback) {
 }
 
 function loadData(date) {
-    document.getElementById("data-table-body").innerHTML = "";
-    document.getElementById("media").innerHTML = "";
-    document.getElementById("minima").innerHTML = "";
-    document.getElementById("massima").innerHTML = "";
-    document.getElementById("ex-term").innerHTML = "";
+    $("#data-table-body").html("");
+    $("#media").html("");
+    $("#minima").html("");
+    $("#massima").html("");
+    $("#ex-term").html("");
     temperature.length = 0;
     if (selezione.value != "") {
         ajaxCall("https://www.dati.lombardia.it/resource/647i-nhxk.json?idsensore=" + selezione.value + "&$where=data between" + formatData(date, "00:00:00.000") + "and" + formatData(date, "23:59:59.000") + "&$order=data ASC", function (res) {
@@ -84,10 +84,10 @@ for (var i = 0; i < radios.length; i++) {
 }
 
 w.onmessage = function (e) {
-    document.getElementById("media").innerHTML = "Temperatura media: " + e.data.media;
-    document.getElementById("minima").innerHTML = "Temperatura minima: " + e.data.minTemp;
-    document.getElementById("massima").innerHTML = "Temperatura massima: " + e.data.maxTemp;
-    document.getElementById("ex-term").innerHTML = "Escursione termica: " + e.data.exTerm;
+    $("#media").html("Temperatura media: " + e.data.media);
+    $("#minima").html("Temperatura minima: " + e.data.minTemp);
+    $("#massima").html("Temperatura massima: " + e.data.maxTemp);
+    $("#ex-term").html("Escursione termica: " + e.data.exTerm);
 }
 
 
