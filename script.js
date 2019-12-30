@@ -47,7 +47,7 @@ function loadData(date) {
     }
 }
 
-var rowView = "<td><%= data %>°</td><td><%= valore %>°</td>";
+var rowView = "<td><%= data %></td><td><%= valore %>°</td>";
 var compiled = _.template(rowView);
 var xhr = new XMLHttpRequest();
 var w = new Worker('worker.js');
@@ -65,12 +65,8 @@ selezione.addEventListener("change", function () {
     loadData(dateToda);
 });
 
-document.getElementById("show-list").addEventListener("click", function () {
-    if (document.getElementById("table-container").style.display == "none") {
-        document.getElementById("table-container").style.display = "block";
-    } else {
-        document.getElementById("table-container").style.display = "none";
-    }
+$("#show-list").click(function(){
+    $("#table-container").toggle("slow", function(){});
 })
 
 for (var i = 0; i < radios.length; i++) {
